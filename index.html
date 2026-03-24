@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>DKTH Ethiopia - Travel Request & Approval System</title>
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -28,7 +26,6 @@
             margin: 0 auto;
         }
 
-        /* Role Banner */
         .role-banner {
             background: linear-gradient(135deg, #1a5d7a, #0c3e55);
             border-radius: 32px;
@@ -52,51 +49,18 @@
             font-size: 0.85rem;
         }
 
-        .login-section {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 1.5rem;
-            border-radius: 60px;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .login-section input {
-            padding: 0.6rem 1rem;
-            border-radius: 40px;
-            border: none;
-            font-size: 0.85rem;
-            width: 250px;
-            outline: none;
-        }
-
-        .login-section button {
-            background: white;
-            color: #1a5d7a;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .login-section button:hover {
-            transform: scale(1.02);
-        }
-
-        .role-badge {
+        .approver-badge {
             background: #ffd966;
             color: #7a5c00;
-            padding: 0.3rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Form Section */
         .form-section {
             background: white;
             border-radius: 28px;
@@ -137,17 +101,12 @@
             letter-spacing: 0.3px;
         }
 
-        .form-group label i {
-            margin-right: 6px;
-        }
-
         .form-group input, .form-group textarea, .form-group select {
             padding: 0.75rem 1rem;
             border: 1.5px solid #e2e8f0;
             border-radius: 16px;
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            transition: all 0.2s;
         }
 
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
@@ -174,7 +133,7 @@
             box-shadow: 0 6px 14px rgba(31, 99, 146, 0.25);
         }
 
-        /* Approval Panel */
+        /* Approval Panel - No login required */
         .approval-panel {
             background: white;
             border-radius: 28px;
@@ -188,13 +147,12 @@
             font-size: 1.4rem;
             font-weight: 600;
             color: #7a5c00;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* Booking Panel */
         .booking-panel {
             background: linear-gradient(135deg, #e8f5e9, #c8e6d9);
             border-radius: 28px;
@@ -213,7 +171,6 @@
             gap: 10px;
         }
 
-        /* Table Styles */
         .table-wrapper {
             background: white;
             border-radius: 24px;
@@ -242,6 +199,7 @@
         .data-table td {
             padding: 0.9rem;
             border-bottom: 1px solid #ecf3f8;
+            vertical-align: top;
         }
 
         .approval-badge {
@@ -260,23 +218,82 @@
         .badge-booked { background: #c8e6d9; color: #2e7d32; }
 
         .action-btn {
-            background: none;
-            border: 1px solid #cbdde9;
-            padding: 0.3rem 0.7rem;
-            border-radius: 32px;
-            font-size: 0.7rem;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
-            margin: 0 2px;
+            transition: all 0.2s;
+            margin: 0 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .btn-approve { background: #e0f2e9; color: #11734c; border-color: #bcddce; }
-        .btn-reject { background: #ffe8e6; color: #bc3f2e; border-color: #f0cdc6; }
-        .btn-book { background: #c8e6d9; color: #2e7d32; border-color: #a5d6a7; }
-        .btn-notify { background: #e3f2fd; color: #1565c0; border-color: #bbdef5; }
+        .btn-approve {
+            background: #e0f2e9;
+            color: #11734c;
+            border: 1px solid #bcddce;
+        }
 
-        .hidden { display: none; }
-        .warning { color: #bc3f2e; font-size: 0.8rem; margin-top: 0.5rem; }
+        .btn-approve:hover {
+            background: #c8e6d9;
+            transform: scale(1.02);
+        }
+
+        .btn-reject {
+            background: #ffe8e6;
+            color: #bc3f2e;
+            border: 1px solid #f0cdc6;
+        }
+
+        .btn-reject:hover {
+            background: #ffd6d1;
+            transform: scale(1.02);
+        }
+
+        .btn-book {
+            background: #4caf50;
+            color: white;
+            border: none;
+        }
+
+        .btn-book:hover {
+            background: #45a049;
+            transform: scale(1.02);
+        }
+
+        .request-card {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #ffd966;
+            transition: all 0.2s;
+        }
+
+        .request-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #4caf50;
+        }
+
+        .stats-badge {
+            background: #e9f0f5;
+            padding: 0.4rem 1rem;
+            border-radius: 32px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1f597b;
+            display: inline-block;
+        }
 
         .toast {
             position: fixed;
@@ -292,39 +309,56 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
+        .toast-error {
+            background: #bc3f2e;
+        }
+
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
 
-        .notification-badge {
-            background: #ff6b6b;
-            color: white;
-            border-radius: 20px;
-            padding: 0.2rem 0.5rem;
-            font-size: 0.6rem;
-            margin-left: 8px;
+        .hidden {
+            display: none;
+        }
+
+        .info-note {
+            background: #e3f2fd;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            font-size: 0.8rem;
+            color: #1565c0;
+        }
+
+        .email-preview {
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
 <div class="dashboard-container">
-    <!-- Role Banner with Login -->
+    <!-- Header Banner -->
     <div class="role-banner">
         <div class="role-info">
-            <h2><i class="fas fa-plane"></i> DKTH Ethiopia Travel Management System</h2>
+            <h2><i class="fas fa-plane"></i> DKTEthiopia Travel Management System</h2>
+            <p>First Approver: assaye.d@dktethiopia.org | Transport Manager: solomon.g@dktehtiopia.org</p>
+            <p style="font-size: 0.75rem; margin-top: 5px;"><i class="fas fa-check-circle"></i> <strong>No login required!</strong> Click Approve/Reject buttons below to make decisions. Approved requests automatically go to Transport Manager.</p>
         </div>
-        <div class="login-section">
-            <i class="fas fa-user-lock"></i>
-            <input type="email" id="loginEmail" placeholder="Enter your email to login" value="">
-            <button id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
-            <div id="currentRoleBadge" class="role-badge">Not logged in</div>
+        <div class="approver-badge">
+            <i class="fas fa-user-check"></i> First Approver Access
         </div>
     </div>
 
     <!-- Requester Form Section -->
     <div id="requesterForm" class="form-section">
-        <h2><i class="fas fa-pen-alt"></i> New Travel Request</h2>
+        <h2><i class="fas fa-pen-alt"></i> Submit New Travel Request</h2>
         <div class="form-grid">
             <div class="form-group">
                 <label><i class="fas fa-user"></i> Travel Requester Full Name *</label>
@@ -369,45 +403,35 @@
             </div>
             <div class="form-group" style="grid-column: span 2;">
                 <label><i class="fas fa-comment"></i> Reason / Justification *</label>
-                <textarea id="reason" placeholder="Explain purpose, expected outcomes..."></textarea>
+                <textarea id="reason" rows="3" placeholder="Explain the purpose of travel, expected outcomes, and justification..."></textarea>
             </div>
         </div>
         <button class="btn-submit" id="submitRequestBtn"><i class="fas fa-paper-plane"></i> Submit Travel Request</button>
-        <div id="requesterWarning" class="warning"></div>
     </div>
 
-    <!-- First Approval Panel (Only visible to assaye.d@dktethiopia.org) -->
-    <div id="approvalPanel" class="approval-panel hidden">
-        <h2><i class="fas fa-user-check"></i> First Approval Dashboard <span style="font-size:0.8rem;">(assaye.d@dktethiopia.org)</span></h2>
-        <p style="margin-bottom: 1rem; color: #7a5c00;"><i class="fas fa-bell"></i> Outlook notifications will be sent to approver's email when requests are submitted</p>
-        <div class="table-wrapper">
-            <table class="data-table" id="approvalTable">
-                <thead>
-                    <tr><th>ID</th><th>Requester</th><th>Department</th><th>Destination</th><th>Travel Period</th><th>Reason</th><th>Status</th><th>Action</th></tr>
-                </thead>
-                <tbody id="approvalTableBody"></tbody>
-            </table>
+    <!-- First Approval Panel - Direct Approve/Reject Buttons (No Login Required) -->
+    <div id="approvalPanel" class="approval-panel">
+        <h2><i class="fas fa-user-check"></i> First Approval Dashboard</h2>
+        <div class="info-note">
+            <i class="fas fa-info-circle"></i> <strong>No login required!</strong> Review each request below and click <strong>APPROVE</strong> or <strong>REJECT</strong>. 
+            Approved requests will automatically be sent to the Transport Manager for booking.
         </div>
+        <div id="pendingRequestsContainer"></div>
     </div>
 
-    <!-- Transport Manager Panel -->
-    <div id="bookingPanel" class="booking-panel hidden">
+    <!-- Transport Manager Booking Panel -->
+    <div id="bookingPanel" class="booking-panel">
         <h2><i class="fas fa-suitcase"></i> Transport Manager - Booking Required</h2>
-        <p style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> Authorized Booking: solomon.g@dktehtiopia.org</p>
-        <div class="table-wrapper">
-            <table class="data-table" id="bookingTable">
-                <thead>
-                    <tr><th>ID</th><th>Requester</th><th>Department</th><th>Destination</th><th>Travel Period</th><th>Approved By</th><th>Booking Status</th><th>Action</th></tr>
-                </thead>
-                <tbody id="bookingTableBody"></tbody>
-            </table>
+        <div class="info-note">
+            <i class="fas fa-info-circle"></i> Approved requests appear here. Click <strong>CONFIRM BOOKING</strong> to finalize travel arrangements.
         </div>
+        <div id="approvedRequestsContainer"></div>
     </div>
 
     <!-- All Requests Table -->
-    <div class="header" style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 1.5rem 0 1rem 0;">
         <h3><i class="fas fa-list"></i> All Travel Requests</h3>
-        <div class="stats-badge" id="rowStats" style="background:#e9f0f5; padding:0.4rem 1rem; border-radius:32px;">0 requests</div>
+        <div class="stats-badge" id="rowStats">0 requests</div>
     </div>
     <div class="table-wrapper">
         <table class="data-table" id="allRequestsTable">
@@ -424,37 +448,32 @@
     const FIRST_APPROVER_EMAIL = "assaye.d@dktethiopia.org";
     const TRANSPORT_MANAGER_EMAIL = "solomon.g@dktehtiopia.org";
     
-    // Department list
-    const DEPARTMENTS = ["Operation", "Marketing", "HR & Admin", "Program", "Finance"];
-    
-    let currentUser = null;
-    let currentRole = "requester";
     let travelRequests = [];
     let nextId = 1;
     
-    // Load/Save data
+    // Load/Save data from localStorage
     function loadData() {
-        const saved = localStorage.getItem('travelRequests');
+        const saved = localStorage.getItem('travelRequests_final');
         if (saved) {
             travelRequests = JSON.parse(saved);
             nextId = Math.max(...travelRequests.map(r => r.id), 0) + 1;
         } else {
+            // Demo data for testing
             travelRequests = [];
             nextId = 1;
         }
-        renderAllTables();
+        renderAll();
     }
     
     function saveData() {
-        localStorage.setItem('travelRequests', JSON.stringify(travelRequests));
-        renderAllTables();
+        localStorage.setItem('travelRequests_final', JSON.stringify(travelRequests));
+        renderAll();
     }
     
     function showToast(message, isError = false) {
         const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.style.background = isError ? '#bc3f2e' : '#11734c';
-        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i> ${message}`;
+        toast.className = 'toast' + (isError ? ' toast-error' : '');
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${message}`;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 4000);
     }
@@ -484,22 +503,23 @@
         return status;
     }
     
-    function getBookingBadge(status) {
-        if (status === "Pending") return '<span class="approval-badge badge-pending"><i class="fas fa-hourglass"></i> Pending</span>';
-        if (status === "Booked") return '<span class="approval-badge badge-booked"><i class="fas fa-check-circle"></i> Confirmed</span>';
-        return '<span class="approval-badge badge-pending">—</span>';
+    // Send Outlook email notification
+    function sendOutlookEmail(to, subject, body) {
+        const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoLink, '_blank');
+        return true;
     }
     
-    // Send Outlook notification to first approver (opens Outlook with pre-filled email)
-    function sendOutlookNotificationToApprover(request) {
-        const subject = encodeURIComponent(`[URGENT] Travel Request #${request.id} - Pending Approval - ${request.requesterName}`);
-        const body = encodeURIComponent(`
+    // Send notification to first approver when request is submitted
+    function notifyApprover(request) {
+        const subject = `[ACTION REQUIRED] Travel Request #${request.id} - ${request.requesterName}`;
+        const body = `
 Dear First Approver,
 
-A new travel request requires your immediate attention.
+A new travel request has been submitted and requires your review.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TRAVEL REQUEST DETAILS
+REQUEST DETAILS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Request ID: #${request.id}
 Requester Name: ${request.requesterName}
@@ -508,30 +528,25 @@ Department: ${request.department}
 Travel Type: ${request.travelType}
 Destination: ${request.destinationPlace}
 Travel Period: ${formatDate(request.startDate)} → ${formatDate(request.destinationDate)}
-Reason: ${request.reason}
-Submitted At: ${request.createdAt || new Date().toLocaleString()}
+
+Reason for Travel:
+${request.reason}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔔 ACTION REQUIRED: Please review and approve/reject this request.
-
-To approve, click here: ${window.location.href.split('?')[0]}?action=approve&id=${request.id}
-To reject, click here: ${window.location.href.split('?')[0]}?action=reject&id=${request.id}
-
-You can also log in to the system using your email: ${FIRST_APPROVER_EMAIL}
+Please login to the Travel Management System to review and make your decision.
 
 Thank you,
 DKTH Ethiopia Travel Management System
-        `.trim());
+        `.trim();
         
-        const mailtoLink = `mailto:${FIRST_APPROVER_EMAIL}?subject=${subject}&body=${body}`;
-        window.open(mailtoLink, '_blank');
-        return true;
+        sendOutlookEmail(FIRST_APPROVER_EMAIL, subject, body);
+        showToast(`📧 Approval notification sent to ${FIRST_APPROVER_EMAIL}`);
     }
     
     // Send notification to transport manager after approval
-    function sendOutlookNotificationToTransport(request) {
-        const subject = encodeURIComponent(`Travel Booking Required - Request #${request.id} - ${request.requesterName}`);
-        const body = encodeURIComponent(`
+    function notifyTransportManager(request) {
+        const subject = `[BOOKING REQUIRED] Travel Request #${request.id} - ${request.requesterName}`;
+        const body = `
 Dear Transport Manager,
 
 A travel request has been APPROVED and requires booking arrangements.
@@ -540,15 +555,16 @@ A travel request has been APPROVED and requires booking arrangements.
 APPROVED TRAVEL REQUEST
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Request ID: #${request.id}
-Requester: ${request.requesterName}
-Email: ${request.requesterEmail}
+Requester Name: ${request.requesterName}
+Requester Email: ${request.requesterEmail}
 Department: ${request.department}
 Travel Type: ${request.travelType}
 Destination: ${request.destinationPlace}
 Travel Period: ${formatDate(request.startDate)} → ${formatDate(request.destinationDate)}
-Reason: ${request.reason}
-Approved By: ${request.approvedBy || FIRST_APPROVER_EMAIL}
 Approved At: ${request.approvedAt || new Date().toLocaleString()}
+
+Reason for Travel:
+${request.reason}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📌 Please arrange:
@@ -556,19 +572,20 @@ Approved At: ${request.approvedAt || new Date().toLocaleString()}
 - Accommodation
 - Ground transportation
 
-To confirm booking, log in to the system with email: ${TRANSPORT_MANAGER_EMAIL}
+Please login to the system to confirm booking.
 
 Thank you,
 Travel Approval System
-        `.trim());
+        `.trim();
         
-        window.open(`mailto:${TRANSPORT_MANAGER_EMAIL}?subject=${subject}&body=${body}`, '_blank');
+        sendOutlookEmail(TRANSPORT_MANAGER_EMAIL, subject, body);
+        showToast(`📧 Booking notification sent to ${TRANSPORT_MANAGER_EMAIL}`);
     }
     
-    // Send notification to requester about approval/rejection
-    function sendOutlookNotificationToRequester(request, status, comment = "") {
-        const subject = encodeURIComponent(`Travel Request #${request.id} - ${status} - ${request.destinationPlace}`);
-        const body = encodeURIComponent(`
+    // Send notification to requester about decision
+    function notifyRequester(request, status, comment = "") {
+        const subject = `Travel Request #${request.id} - ${status} - ${request.destinationPlace}`;
+        const body = `
 Dear ${request.requesterName},
 
 Your travel request has been ${status.toLowerCase()}.
@@ -581,19 +598,48 @@ Destination: ${request.destinationPlace}
 Travel Period: ${formatDate(request.startDate)} → ${formatDate(request.destinationDate)}
 Department: ${request.department}
 Status: ${status}
-${comment ? `Comment: ${comment}` : ''}
+${comment ? `\nComment: ${comment}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ${status === "Approved" ? '✅ Your request has been approved and will be forwarded to the transport manager for booking.' : '❌ Your request has been rejected. Please contact your supervisor for more information.'}
 
 Thank you,
 DKTH Ethiopia Travel Management Team
-        `.trim());
+        `.trim();
         
-        window.open(`mailto:${request.requesterEmail}?subject=${subject}&body=${body}`, '_blank');
+        sendOutlookEmail(request.requesterEmail, subject, body);
     }
     
-    // Add new travel request
+    // Send booking confirmation to requester
+    function notifyBookingConfirmation(request) {
+        const subject = `[CONFIRMED] Travel Booking #${request.id} - ${request.destinationPlace}`;
+        const body = `
+Dear ${request.requesterName},
+
+Your travel booking has been CONFIRMED.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BOOKING DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Request ID: #${request.id}
+Destination: ${request.destinationPlace}
+Travel Period: ${formatDate(request.startDate)} → ${formatDate(request.destinationDate)}
+Travel Type: ${request.travelType}
+Department: ${request.department}
+Booked At: ${request.bookedAt || new Date().toLocaleString()}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Please contact the transport office for your itinerary and tickets.
+
+Safe travels!
+DKTH Ethiopia Transport Team
+        `.trim();
+        
+        sendOutlookEmail(request.requesterEmail, subject, body);
+        showToast(`📧 Booking confirmation sent to ${request.requesterEmail}`);
+    }
+    
+    // Submit new travel request
     function addTravelRequest() {
         const requesterName = document.getElementById("requesterName").value.trim();
         const requesterEmail = document.getElementById("requesterEmail").value.trim();
@@ -637,274 +683,232 @@ DKTH Ethiopia Travel Management Team
         // Clear form
         document.getElementById("requesterName").value = "";
         document.getElementById("requesterEmail").value = "";
-        document.getElementById("startDate").value = new Date().toISOString().split('T')[0];
         document.getElementById("destinationPlace").value = "";
-        document.getElementById("destinationDate").value = new Date(Date.now() + 3*24*60*60*1000).toISOString().split('T')[0];
         document.getElementById("reason").value = "";
         document.getElementById("department").value = "";
         
-        showToast(`✅ Request #${newRequest.id} submitted! Outlook notification sent to approver.`);
+        showToast(`✅ Request #${newRequest.id} submitted successfully! Notification sent to approver.`);
         
-        // Send Outlook notification to first approver (opens Outlook popup)
+        // Send notification to first approver
         setTimeout(() => {
-            sendOutlookNotificationToApprover(newRequest);
+            notifyApprover(newRequest);
         }, 500);
     }
     
-    // Approve request
+    // Approve request - called when clicking Approve button
     function approveRequest(id) {
-        if (currentRole !== "approver") {
-            showToast("Unauthorized: Only first approver can approve requests", true);
-            return;
-        }
         const request = travelRequests.find(r => r.id === id);
         if (request && request.approvalStatus === "Pending") {
             request.approvalStatus = "Approved";
-            request.approvedBy = currentUser;
+            request.approvedBy = FIRST_APPROVER_EMAIL;
             request.approvedAt = new Date().toLocaleString();
             saveData();
-            showToast(`✅ Request #${id} approved! Outlook notification sent to transport manager.`);
+            showToast(`✅ Request #${id} APPROVED! Transport manager has been notified.`);
             
-            // Send notification to transport manager
+            // Notify transport manager for booking
             setTimeout(() => {
-                sendOutlookNotificationToTransport(request);
+                notifyTransportManager(request);
             }, 500);
             
-            // Send notification to requester
+            // Notify requester
             setTimeout(() => {
-                sendOutlookNotificationToRequester(request, "Approved");
+                notifyRequester(request, "Approved");
             }, 1000);
+        } else if (request && request.approvalStatus !== "Pending") {
+            showToast(`⚠️ Request #${id} has already been ${request.approvalStatus.toLowerCase()}`, true);
+        } else {
+            showToast(`❌ Request #${id} not found`, true);
         }
     }
     
-    // Reject request
+    // Reject request - called when clicking Reject button
     function rejectRequest(id) {
-        if (currentRole !== "approver") {
-            showToast("Unauthorized: Only first approver can reject requests", true);
-            return;
-        }
         const request = travelRequests.find(r => r.id === id);
         if (request && request.approvalStatus === "Pending") {
             request.approvalStatus = "Rejected";
-            request.approvedBy = currentUser;
+            request.approvedBy = FIRST_APPROVER_EMAIL;
             request.approvedAt = new Date().toLocaleString();
             saveData();
-            showToast(`❌ Request #${id} rejected. Notification sent to requester.`);
+            showToast(`❌ Request #${id} REJECTED. Requester has been notified.`);
             
-            // Send rejection notification to requester
+            // Notify requester
             setTimeout(() => {
-                sendOutlookNotificationToRequester(request, "Rejected", "Please review the travel policy and resubmit with proper justification.");
+                notifyRequester(request, "Rejected", "The request was rejected by first approver.");
             }, 500);
+        } else if (request && request.approvalStatus !== "Pending") {
+            showToast(`⚠️ Request #${id} has already been ${request.approvalStatus.toLowerCase()}`, true);
+        } else {
+            showToast(`❌ Request #${id} not found`, true);
         }
     }
     
-    // Book request
+    // Book request - transport manager confirms booking
     function bookRequest(id) {
-        if (currentRole !== "transport") {
-            showToast("Unauthorized: Only transport manager can book travel", true);
-            return;
-        }
         const request = travelRequests.find(r => r.id === id);
         if (request && request.approvalStatus === "Approved" && request.bookingStatus === "Pending") {
             request.bookingStatus = "Booked";
-            request.bookedBy = currentUser;
+            request.bookedBy = TRANSPORT_MANAGER_EMAIL;
             request.bookedAt = new Date().toLocaleString();
             saveData();
-            showToast(`✅ Request #${id} booking confirmed! Confirmation sent to requester.`);
+            showToast(`✅ Request #${id} BOOKING CONFIRMED! Requester notified.`);
             
             // Send confirmation to requester
-            const subject = encodeURIComponent(`Travel Booking Confirmed - Request #${id} - ${request.destinationPlace}`);
-            const body = encodeURIComponent(`
-Dear ${request.requesterName},
-
-Your travel booking has been CONFIRMED.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-BOOKING DETAILS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Request ID: #${request.id}
-Destination: ${request.destinationPlace}
-Travel Period: ${formatDate(request.startDate)} → ${formatDate(request.destinationDate)}
-Travel Type: ${request.travelType}
-Department: ${request.department}
-Booked By: Transport Manager
-Booked At: ${request.bookedAt}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Please contact the transport office for your itinerary and tickets.
-
-Safe travels!
-DKTH Ethiopia Transport Team
-            `.trim());
-            window.open(`mailto:${request.requesterEmail}?subject=${subject}&body=${body}`, '_blank');
+            setTimeout(() => {
+                notifyBookingConfirmation(request);
+            }, 500);
+        } else if (request && request.approvalStatus !== "Approved") {
+            showToast(`⚠️ Request #${id} must be approved before booking. Current status: ${request.approvalStatus}`, true);
+        } else if (request && request.bookingStatus === "Booked") {
+            showToast(`⚠️ Request #${id} has already been booked`, true);
         }
     }
     
-    // Render functions
-    function renderAllTables() {
-        renderAllRequestsTable();
-        if (currentRole === "approver") renderApprovalTable();
-        if (currentRole === "transport") renderBookingTable();
-        document.getElementById("rowStats").innerHTML = `${travelRequests.length} total request${travelRequests.length !== 1 ? 's' : ''}`;
+    // Render Approval Panel with Approve/Reject Buttons
+    function renderApprovalPanel() {
+        const container = document.getElementById("pendingRequestsContainer");
+        if (!container) return;
+        
+        const pendingRequests = travelRequests.filter(r => r.approvalStatus === "Pending");
+        
+        if (pendingRequests.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 3rem; background: #fafdff; border-radius: 24px;">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; color: #4caf50;"></i>
+                    <p style="margin-top: 1rem; color: #2e7d32;">No pending requests. All requests have been processed.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        for (let req of pendingRequests) {
+            html += `
+                <div class="request-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div>
+                            <span style="background: #ffd966; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600;">Request #${req.id}</span>
+                            <span style="margin-left: 0.5rem; font-size: 0.7rem; color: #b76e0e;"><i class="fas fa-clock"></i> Submitted: ${req.createdAt}</span>
+                        </div>
+                        <span class="approval-badge badge-pending"><i class="fas fa-hourglass"></i> Awaiting Your Decision</span>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div><strong><i class="fas fa-user"></i> Requester:</strong><br>${escapeHtml(req.requesterName)}</div>
+                        <div><strong><i class="fas fa-envelope"></i> Email:</strong><br>${escapeHtml(req.requesterEmail)}</div>
+                        <div><strong><i class="fas fa-building"></i> Department:</strong><br>${escapeHtml(req.department)}</div>
+                        <div><strong><i class="fas fa-briefcase"></i> Travel Type:</strong><br>${escapeHtml(req.travelType)}</div>
+                        <div><strong><i class="fas fa-location-dot"></i> Destination:</strong><br>${escapeHtml(req.destinationPlace)}</div>
+                        <div><strong><i class="fas fa-calendar"></i> Travel Period:</strong><br>${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 12px; margin-bottom: 1.2rem;">
+                        <strong><i class="fas fa-comment"></i> Reason / Justification:</strong>
+                        <p style="margin-top: 0.5rem; line-height: 1.5;">${escapeHtml(req.reason)}</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid #eee; padding-top: 1rem;">
+                        <button class="action-btn btn-approve" onclick="approveRequest(${req.id})">
+                            <i class="fas fa-check-circle"></i> APPROVE REQUEST
+                        </button>
+                        <button class="action-btn btn-reject" onclick="rejectRequest(${req.id})">
+                            <i class="fas fa-times-circle"></i> REJECT REQUEST
+                        </button>
+                    </div>
+                    <div class="email-preview">
+                        <i class="fas fa-envelope"></i> Clicking approve will send booking notification to ${TRANSPORT_MANAGER_EMAIL}
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
     }
     
+    // Render Booking Panel with Confirm Booking buttons
+    function renderBookingPanel() {
+        const container = document.getElementById("approvedRequestsContainer");
+        if (!container) return;
+        
+        const approvedRequests = travelRequests.filter(r => r.approvalStatus === "Approved" && r.bookingStatus === "Pending");
+        
+        if (approvedRequests.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 3rem; background: #fafdff; border-radius: 24px;">
+                    <i class="fas fa-check-double" style="font-size: 3rem; color: #4caf50;"></i>
+                    <p style="margin-top: 1rem; color: #2e7d32;">No pending bookings. All approved requests have been booked.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        for (let req of approvedRequests) {
+            html += `
+                <div class="booking-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div>
+                            <span style="background: #4caf50; color: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600;">Request #${req.id}</span>
+                            <span style="margin-left: 0.5rem; font-size: 0.7rem; color: #2e7d32;"><i class="fas fa-check-circle"></i> Approved: ${req.approvedAt || 'Recently'}</span>
+                        </div>
+                        <span class="approval-badge badge-approved">Approved - Awaiting Booking</span>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div><strong>Requester:</strong> ${escapeHtml(req.requesterName)}</div>
+                        <div><strong>Email:</strong> ${escapeHtml(req.requesterEmail)}</div>
+                        <div><strong>Department:</strong> ${escapeHtml(req.department)}</div>
+                        <div><strong>Destination:</strong> ${escapeHtml(req.destinationPlace)}</div>
+                        <div><strong>Travel Period:</strong> ${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</div>
+                        <div><strong>Travel Type:</strong> ${escapeHtml(req.travelType)}</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid #eee; padding-top: 1rem;">
+                        <button class="action-btn btn-book" onclick="bookRequest(${req.id})">
+                            <i class="fas fa-suitcase"></i> CONFIRM BOOKING
+                        </button>
+                    </div>
+                    <div class="email-preview">
+                        <i class="fas fa-envelope"></i> Clicking confirm will send booking confirmation to ${req.requesterEmail}
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+    
+    // Render All Requests Table
     function renderAllRequestsTable() {
         const tbody = document.getElementById("allRequestsBody");
         if (!tbody) return;
+        
         if (travelRequests.length === 0) {
             tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">No travel requests yet. Submit a new request above.</td></tr>';
+            document.getElementById("rowStats").innerHTML = "0 requests";
             return;
         }
+        
         let html = "";
         for (let req of travelRequests) {
-            html += `<tr>
-                <td>#${req.id}</td>
-                <td>${escapeHtml(req.requesterName)}<br><small>${escapeHtml(req.requesterEmail)}</small></td>
-                <td><span class="approval-badge" style="background:#e3f2fd;">${escapeHtml(req.department)}</span></td>
-                <td>${escapeHtml(req.destinationPlace)}</td>
-                <td>${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</td>
-                <td style="max-width:200px;">${escapeHtml(req.reason.substring(0, 50))}${req.reason.length > 50 ? '...' : ''}</td>
-                <td>${getApprovalBadge(req.approvalStatus)}</td>
-                <td>${getBookingBadge(req.bookingStatus)}</td>
-            </tr>`;
+            html += `\
+                <tr>
+                    <td>#${req.id}</td>
+                    <td>${escapeHtml(req.requesterName)}<br><small style="color:#666;">${escapeHtml(req.requesterEmail)}</small></td>
+                    <td><span style="background:#e3f2fd; padding:0.2rem 0.5rem; border-radius:12px;">${escapeHtml(req.department)}</span></td>
+                    <td>${escapeHtml(req.destinationPlace)}</td>
+                    <td>${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</td>
+                    <td style="max-width:200px;">${escapeHtml(req.reason.substring(0, 60))}${req.reason.length > 60 ? '...' : ''}</td>
+                    <td>${getApprovalBadge(req.approvalStatus)}</td>
+                    <td>${req.bookingStatus === "Booked" ? '<span class="approval-badge badge-booked"><i class="fas fa-check-double"></i> Booked</span>' : '<span class="approval-badge badge-pending"><i class="fas fa-hourglass"></i> Pending</span>'}</td>
+                </tr>
+            `;
         }
         tbody.innerHTML = html;
+        document.getElementById("rowStats").innerHTML = `${travelRequests.length} total request${travelRequests.length !== 1 ? 's' : ''}`;
     }
     
-    function renderApprovalTable() {
-        const tbody = document.getElementById("approvalTableBody");
-        if (!tbody) return;
-        const pendingRequests = travelRequests.filter(r => r.approvalStatus === "Pending");
-        if (pendingRequests.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">No pending requests for approval.</td></tr>';
-            return;
-        }
-        let html = "";
-        for (let req of pendingRequests) {
-            html += `<tr>
-                <td>#${req.id}</td>
-                <td>${escapeHtml(req.requesterName)}<br><small>${escapeHtml(req.requesterEmail)}</small></td>
-                <td><span class="approval-badge" style="background:#e3f2fd;">${escapeHtml(req.department)}</span></td>
-                <td>${escapeHtml(req.destinationPlace)}</td>
-                <td>${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</td>
-                <td style="max-width:180px;">${escapeHtml(req.reason.substring(0, 40))}...</td>
-                <td><span class="approval-badge badge-pending">Pending</span></td>
-                <td>
-                    <button class="action-btn btn-approve" onclick="approveRequest(${req.id})"><i class="fas fa-check"></i> Approve</button>
-                    <button class="action-btn btn-reject" onclick="rejectRequest(${req.id})"><i class="fas fa-times"></i> Reject</button>
-                </td>
-            </tr>`;
-        }
-        tbody.innerHTML = html;
-    }
-    
-    function renderBookingTable() {
-        const tbody = document.getElementById("bookingTableBody");
-        if (!tbody) return;
-        const approvedRequests = travelRequests.filter(r => r.approvalStatus === "Approved" && r.bookingStatus === "Pending");
-        if (approvedRequests.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">No approved requests awaiting booking.</td></tr>';
-            return;
-        }
-        let html = "";
-        for (let req of approvedRequests) {
-            html += `<tr>
-                <td>#${req.id}</td>
-                <td>${escapeHtml(req.requesterName)}<br><small>${escapeHtml(req.requesterEmail)}</small></td>
-                <td><span class="approval-badge" style="background:#e3f2fd;">${escapeHtml(req.department)}</span></td>
-                <td>${escapeHtml(req.destinationPlace)}</td>
-                <td>${formatDate(req.startDate)} → ${formatDate(req.destinationDate)}</td>
-                <td>${req.approvedBy || 'First Approver'}</td>
-                <td><span class="approval-badge badge-pending">Awaiting Booking</span></td>
-                <td><button class="action-btn btn-book" onclick="bookRequest(${req.id})"><i class="fas fa-suitcase"></i> Confirm Booking</button></td>
-            </tr>`;
-        }
-        tbody.innerHTML = html;
-    }
-    
-    // Login function
-    function login() {
-        const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-        if (!email) {
-            showToast("Please enter your email to login", true);
-            return;
-        }
-        
-        if (email === FIRST_APPROVER_EMAIL) {
-            currentUser = email;
-            currentRole = "approver";
-            document.getElementById("currentRoleBadge").innerHTML = '<i class="fas fa-user-check"></i> First Approver';
-            document.getElementById("currentRoleBadge").style.background = "#ffd966";
-            document.getElementById("approvalPanel").classList.remove("hidden");
-            document.getElementById("bookingPanel").classList.add("hidden");
-            showToast(`Welcome ${email} - You have First Approval authority. Outlook notifications will pop up.`);
-            renderApprovalTable();
-        } 
-        else if (email === TRANSPORT_MANAGER_EMAIL) {
-            currentUser = email;
-            currentRole = "transport";
-            document.getElementById("currentRoleBadge").innerHTML = '<i class="fas fa-truck"></i> Transport Manager';
-            document.getElementById("currentRoleBadge").style.background = "#c8e6d9";
-            document.getElementById("bookingPanel").classList.remove("hidden");
-            document.getElementById("approvalPanel").classList.add("hidden");
-            showToast(`Welcome ${email} - You can confirm travel bookings.`);
-            renderBookingTable();
-        }
-        else {
-            currentUser = email;
-            currentRole = "requester";
-            document.getElementById("currentRoleBadge").innerHTML = '<i class="fas fa-user"></i> Travel Requester';
-            document.getElementById("currentRoleBadge").style.background = "#eef2f5";
-            document.getElementById("currentRoleBadge").style.color = "#1f5a7a";
-            document.getElementById("approvalPanel").classList.add("hidden");
-            document.getElementById("bookingPanel").classList.add("hidden");
-            showToast(`Welcome ${email} - You can submit travel requests.`);
-        }
-        renderAllTables();
-    }
-    
-    // Logout on double click
-    function logout() {
-        currentUser = null;
-        currentRole = "requester";
-        document.getElementById("loginEmail").value = "";
-        document.getElementById("currentRoleBadge").innerHTML = "Not logged in";
-        document.getElementById("currentRoleBadge").style.background = "rgba(255,255,255,0.2)";
-        document.getElementById("currentRoleBadge").style.color = "white";
-        document.getElementById("approvalPanel").classList.add("hidden");
-        document.getElementById("bookingPanel").classList.add("hidden");
-        renderAllTables();
-        showToast("Logged out successfully");
-    }
-    
-    // URL parameter handling for approval links
-    function checkUrlParams() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const action = urlParams.get('action');
-        const id = urlParams.get('id');
-        
-        if (action && id) {
-            const requestId = parseInt(id);
-            const request = travelRequests.find(r => r.id === requestId);
-            if (request && request.approvalStatus === "Pending") {
-                if (action === 'approve') {
-                    request.approvalStatus = "Approved";
-                    request.approvedBy = "Email Link";
-                    request.approvedAt = new Date().toLocaleString();
-                    saveData();
-                    showToast(`✅ Request #${requestId} approved via email link!`);
-                    sendOutlookNotificationToTransport(request);
-                } else if (action === 'reject') {
-                    request.approvalStatus = "Rejected";
-                    request.approvedBy = "Email Link";
-                    request.approvedAt = new Date().toLocaleString();
-                    saveData();
-                    showToast(`❌ Request #${requestId} rejected via email link!`);
-                    sendOutlookNotificationToRequester(request, "Rejected", "Rejected via email link.");
-                }
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        }
+    function renderAll() {
+        renderApprovalPanel();
+        renderBookingPanel();
+        renderAllRequestsTable();
     }
     
     // Initialize
@@ -917,11 +921,9 @@ DKTH Ethiopia Transport Team
         
         loadData();
         document.getElementById("submitRequestBtn").addEventListener("click", addTravelRequest);
-        document.getElementById("loginBtn").addEventListener("click", login);
-        document.getElementById("currentRoleBadge").addEventListener("dblclick", logout);
-        checkUrlParams();
     }
     
+    // Make functions global for onclick
     window.approveRequest = approveRequest;
     window.rejectRequest = rejectRequest;
     window.bookRequest = bookRequest;
